@@ -8,6 +8,7 @@ import HeroInfo from "./HeroInfo";
 import HeroStats from "./HeroStats";
 import HeroHud from "./HeroHud";
 import Projects from "./Projects";
+import Profile from "./Profile";
 import HeroZigzag from "./HeroZigzag";
 import HeroNetwork from "./HeroNetwork";
 import { playHeroIntro, startHeroIdle } from "../animations/heroAnimation";
@@ -55,6 +56,7 @@ export default function Hero() {
       </div>
 
       <Projects />
+      <Profile />
     </section>
   );
 }

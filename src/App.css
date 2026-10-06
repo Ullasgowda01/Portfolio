@@ -237,7 +237,7 @@
   max-width: none;
   /* shifts the centred photo to --portrait-x without using transform */
   margin-left: calc((var(--portrait-x) - 50%) * 2);
-  margin-bottom: -4px;
+  margin-bottom: -5px;
   /* red rim light around your silhouette */
   filter: drop-shadow(0 0 1.6cqw rgba(255, 30, 30, 0.45)) drop-shadow(0 0 5cqw rgba(255, 0, 0, 0.35));
 }
@@ -1199,8 +1199,438 @@
   transform: translateX(0.6vw);
 }
 
+/* ===== PROFILE: About / Skills / Education ===== */
+.profile {
+  --font-tech: "Chakra Petch", "Rajdhani", system-ui, sans-serif;
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-body);
+  background:
+    radial-gradient(ellipse 52% 75% at 6% 16%, rgba(165, 48, 30, 0.55), transparent 70%),
+    radial-gradient(ellipse 45% 55% at 100% 100%, rgba(120, 22, 16, 0.4), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 55% 0%, rgba(80, 14, 8, 0.35), transparent 70%),
+    linear-gradient(120deg, #1b0a08 0%, #090403 45%, #050303 100%);
+}
+
+/* a stage with the same proportions as your reference picture (2576 x 1259) */
+.profile__stage {
+  position: relative;
+  width: min(100vw, calc(100vh * 2576 / 1259));
+  aspect-ratio: 2576 / 1259;
+  container-type: inline-size;
+}
+
+.profile__stage>* {
+  position: absolute;
+}
+
+/* red panel with the cut corner, photo stands in front of it */
+.pf-panel {
+  left: 10.5%;
+  top: 21%;
+  width: 30.1%;
+  height: 75%;
+  border-radius: 1.1cqw;
+  clip-path: polygon(0 0, 72% 0, 100% 31%, 100% 100%, 0 100%);
+  background: linear-gradient(165deg, rgba(172, 64, 46, 0.96) 0%, rgba(114, 35, 26, 0.96) 38%, rgba(52, 15, 11, 0.96) 100%);
+  box-shadow: inset 0 0 6cqw rgba(0, 0, 0, 0.35);
+}
+
+.pf-portrait {
+  inset: 0;
+  pointer-events: none;
+}
+
+.pf-portrait img {
+  position: absolute;
+  left: 26.4%;
+  bottom: 2.5%;
+  height: 88%;
+  width: auto;
+  max-width: none;
+  translate: -50% 0;
+  filter: drop-shadow(0 0 2cqw rgba(0, 0, 0, 0.55));
+}
+
+/* thin decorations */
+.pf-line {
+  left: 4.46%;
+  top: 24.2%;
+  width: 1px;
+  height: 56.4%;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.4) 15%, rgba(255, 255, 255, 0.4) 85%, transparent);
+}
+
+.pf-mark {
+  left: calc(4.46% - 0.3cqw);
+  background: #e8453a;
+}
+
+.pf-mark--1 {
+  top: 54.2%;
+  width: 0.8cqw;
+  height: 0.8cqw;
+}
+
+.pf-mark--2 {
+  top: 57.9%;
+  width: 0.35cqw;
+  height: 0.35cqw;
+}
+
+.pf-vtext {
+  left: calc(4.46% - 0.3cqw);
+  top: 45%;
+  writing-mode: vertical-rl;
+  font: 500 0.5cqw / 1 var(--font-tech);
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.pf-bracket {
+  width: 2cqw;
+  height: 2cqw;
+  border: 0 solid rgba(255, 255, 255, 0.6);
+}
+
+.pf-bracket--panel {
+  left: 8%;
+  top: 16.7%;
+  width: 2.7cqw;
+  height: 2.7cqw;
+  border-top-width: 2px;
+  border-left-width: 2px;
+}
+
+.pf-bracket--a {
+  left: 47.5%;
+  top: 35.3%;
+  border-top-width: 2px;
+  border-left-width: 2px;
+}
+
+.pf-bracket--b {
+  right: 6.8%;
+  bottom: 17.4%;
+  width: 2.3cqw;
+  height: 2.3cqw;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+}
+
+.pf-bottom {
+  left: 0;
+  right: 0;
+  bottom: 2.5%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.pf-wire {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.pf-wire path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 3;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.pf-wire circle {
+  fill: rgba(255, 255, 255, 0.8);
+}
+
+/* caption (bottom-left) and tiny code (top) */
+.pf-cap {
+  left: 7.9%;
+  top: 74.3%;
+  height: 13.1%;
+  display: flex;
+  align-items: center;
+  gap: 1.1cqw;
+  max-width: 31%;
+  font: 500 1.75cqw / 1.25 var(--font-body);
+  color: #fff;
+  opacity: 0;
+}
+
+.pf-cap::before {
+  content: "";
+  align-self: stretch;
+  width: 0.35cqw;
+  background: #e8453a;
+  flex: none;
+}
+
+.pf-code {
+  left: 40.2%;
+  top: 24.6%;
+  margin: 0;
+  font: 0.58cqw / 1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: pre;
+  opacity: 0;
+}
+
+/* the three page dashes (bottom centre) */
+.pf-dashes {
+  left: 60.9%;
+  top: 88.5%;
+  display: flex;
+  gap: 0.7cqw;
+}
+
+.pf-dash {
+  width: 3.5cqw;
+  height: 0.2cqw;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.pf-dash:first-child {
+  background: #e8453a;
+}
+
+/* ---- the three pages on the right ---- */
+.pf-slides {
+  inset: 0;
+}
+
+.pslide {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pslide>* {
+  position: absolute;
+}
+
+.pf-title {
+  right: 6.8%;
+  top: 9.2%;
+  font: 700 4.1cqw / 1 var(--font-tech);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-align: right;
+  color: #fff;
+}
+
+.pf-sub {
+  right: 6.8%;
+  top: 21.4%;
+  font: 300 1.95cqw / 1.2 var(--font-body);
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+.pf-meta {
+  right: 6.8%;
+  top: 29.8%;
+  display: flex;
+  gap: 1.6cqw;
+  font: 500 0.8cqw / 1 var(--font-tech);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+
+.pf-meta span:first-child {
+  color: #ff6a5a;
+}
+
+/* glass box with cut corners (same idea as the project cards) */
+.glassbox {
+  --c: 0.9cqw;
+  --w: 1.5px;
+  position: absolute;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03) 55%, rgba(255, 255, 255, 0.07)),
+    rgba(14, 8, 7, 0.45);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  clip-path: polygon(0 0, calc(100% - var(--c)) 0, 100% var(--c), 100% 100%, var(--c) 100%, 0 calc(100% - var(--c)));
+}
+
+.glassbox::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.14) 40%, rgba(255, 255, 255, 0.26) 70%, rgba(255, 255, 255, 0.6));
+  clip-path: polygon(evenodd,
+      50% 0, calc(100% - var(--c)) 0, 100% var(--c), 100% 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 0, 50% 0,
+      50% var(--w), calc(100% - var(--c) - 1px) var(--w), calc(100% - var(--w)) calc(var(--c) + 1px),
+      calc(100% - var(--w)) calc(100% - var(--w)), calc(var(--c) + 1px) calc(100% - var(--w)),
+      var(--w) calc(100% - var(--c) - 1px), var(--w) var(--w), 50% var(--w));
+}
+
+/* About */
+.pf-about {
+  left: 47.5%;
+  top: 34.5%;
+  width: 45.4%;
+  height: 27%;
+  padding: 1.6cqw 1.9cqw;
+}
+
+.pf-about p {
+  font: 400 1.42cqw / 1.65 var(--font-body);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.pf-tile {
+  top: 65%;
+  width: 14.2%;
+  height: 16%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6cqw;
+  padding: 0 1.5cqw;
+}
+
+.pf-tile b {
+  font: 700 3.2cqw / 1 var(--font-tech);
+  color: #fff;
+}
+
+.pf-tile b i {
+  font-style: normal;
+  color: #e8453a;
+}
+
+.pf-tile span {
+  font: 500 0.78cqw / 1.3 var(--font-tech);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* Skills: glossy floating pills */
+.pill {
+  pointer-events: auto;
+}
+
+.pill__tilt {
+  width: 100%;
+  height: 100%;
+  rotate: var(--r);
+}
+
+.pill__in {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font: 500 1.85cqw / 1 var(--font-body);
+  color: #2f2f2f;
+  white-space: nowrap;
+  background: linear-gradient(180deg, #fbfbfb 0%, #e6e6e6 55%, #cfcfcf 100%);
+  box-shadow:
+    0 0.6cqw 1.4cqw rgba(0, 0, 0, 0.55),
+    0 0.15cqw 0.3cqw rgba(0, 0, 0, 0.4),
+    inset 0 0.25cqw 0.35cqw rgba(255, 255, 255, 0.95),
+    inset 0 -0.35cqw 0.6cqw rgba(0, 0, 0, 0.14);
+  animation: pill-float 5s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+  transition: box-shadow 0.3s, color 0.3s;
+}
+
+.pill:hover .pill__in {
+  color: #b3261a;
+  box-shadow:
+    0 0.6cqw 1.6cqw rgba(0, 0, 0, 0.55),
+    0 0 1.8cqw rgba(255, 70, 50, 0.65),
+    inset 0 0.25cqw 0.35cqw rgba(255, 255, 255, 0.95),
+    inset 0 -0.35cqw 0.6cqw rgba(0, 0, 0, 0.14);
+}
+
+@keyframes pill-float {
+
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -0.45cqw;
+  }
+}
+
+/* Education: timeline */
+.pf-edu-line {
+  left: 48.4%;
+  top: 36%;
+  width: 1px;
+  height: 46.5%;
+  background: linear-gradient(180deg, rgba(232, 69, 58, 0.9), rgba(255, 255, 255, 0.25));
+}
+
+.pf-edu-dot {
+  left: calc(48.4% - 0.4cqw);
+  width: 0.8cqw;
+  height: 0.8cqw;
+  border-radius: 50%;
+  background: #e8453a;
+  box-shadow: 0 0 1cqw rgba(255, 60, 40, 0.9);
+}
+
+.pf-edu {
+  left: 50.8%;
+  width: 42.1%;
+  height: 14%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2cqw;
+  padding: 0 2cqw;
+}
+
+.pf-edu h3 {
+  font: 600 1.85cqw / 1.15 var(--font-tech);
+  color: #fff;
+}
+
+.pf-edu p {
+  margin-top: 0.5cqw;
+  font: 400 1.1cqw / 1.3 var(--font-body);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pf-edu .yr {
+  flex: none;
+  padding: 0.45cqw 1cqw;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font: 500 0.95cqw / 1 var(--font-tech);
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.pf-edu .yr--live {
+  border-color: rgba(232, 69, 58, 0.9);
+  color: #ff7a6a;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .smoke {
+    animation: none;
+  }
+
+  .pill__in {
     animation: none;
   }
 }

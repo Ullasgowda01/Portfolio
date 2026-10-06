@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { addProjectsTransition, addProjectsCarousel } from "./projectAnimations";
+import { addProfileSection } from "./profileAnimations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,7 +56,7 @@ export function initHeroScroll(heroEl) {
     scrollTrigger: {
       trigger: heroEl, // the element itself (a ".hero" string would not be found inside the scoped context)
       start: "top top",
-      end: "+=830%",
+      end: "+=1260%",
       scrub: 1,
       pin: true,
       anticipatePin: 1,
@@ -122,7 +123,10 @@ export function initHeroScroll(heroEl) {
   const projectsReady = addProjectsTransition(tl, 5.5);
 
   // Step 8: cards move left one by one (4 replaces 1, 5 replaces 2, 6 replaces 3)
-  addProjectsCarousel(tl, projectsReady);
+  const carouselEnd = addProjectsCarousel(tl, projectsReady);
+
+  // Step 9: About / Skills / Education page (slides in after the projects)
+  addProfileSection(tl, carouselEnd);
 
   // thick lines revolve around you (loops on its own, not tied to scroll)
   const bars = gsap.utils.toArray(".orbit-bar");
