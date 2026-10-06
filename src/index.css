@@ -1,0 +1,38 @@
+/* ===== Global tokens + reset ===== */
+:root {
+  --black: #000000;
+  --red: #ff1a1a;
+  --red-hot: #ff2a2a;
+  --red-deep: #7a0000;
+  --white: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.82);
+
+  --font-display: "Anton", "Impact", sans-serif;
+  --font-script: "Mrs Saint Delafield", cursive;
+  --font-body: "Poppins", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--black);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
